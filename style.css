@@ -1,0 +1,16 @@
+
+
+#baseTree {
+    width: 400px;
+    height: 400px
+}
+
+#tCanvas2 {
+    border: solid 1px black;
+    opacity:0.5 
+}
+
+#tCanvas {
+   
+    border: solid 1px black;
+}

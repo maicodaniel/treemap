@@ -5,7 +5,8 @@
     const canvasHeight = 800;
 
 function draw() {
-    var ctx = document.getElementById("tCanvas").getContext("2d");
+
+  /*  var ctx = document.getElementById("tCanvas").getContext("2d");
     for (var i = 0; i < 32; i++) {
       for (var j = 0; j < 32; j++) {
         ctx.fillStyle =
@@ -21,7 +22,7 @@ function draw() {
     }
 
 
-
+  */
 
 
     let totalH = 800;
@@ -77,25 +78,18 @@ function draw() {
       area = w * h;
       resto = totalV - (w + y);
 
-      console.log('validacao i >0 ' + (x + h), h, area);
+      console.log('validacao i >0 ' +( y + w), h, area);
 
-     if ((modulo % 2) !== 0) {
+     if ((modulo % 2) !== 0 && ((y + w) < 800)) {
 
-      if ((y + w) > 800) {
-
-        console.log(x,y,h,w, 'validacao i >0 else = ' + (area), area2);
-      }else if((y + w) == 800){
-
-
-        console.log(x,y,h,w, 'validacao i >0 else if = ' + (area), area2);
-      }
+      
       w =  w + resto;
       h = area/w; 
       area2 = w * h;
      
       if ((y + w) > 800) {
 
-        console.log(x,y,h,w, 'validacao i >0 else = ' + (area), area2);
+        
       }else if((y + w) == 800){
 
       }
@@ -117,7 +111,7 @@ function draw() {
 
       ctx2.fillStyle =
         "rgb(" +
-        Math.floor(255 -  (i * 25)) +
+        Math.floor(155 -  (i * 25)) +
         "," +
         Math.floor(255 - (i * 50)) +
         "," +

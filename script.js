@@ -27,10 +27,7 @@ function draw() {
 
     let totalH = 800;
     let totalV = 800;
-    const data = [
-      { label: "Eve", value: 10 },
-      { label: "Cain", value: 14 },
-    ];
+   
    
 
     var ctx2 = document.getElementById("tCanvas2").getContext("2d");
@@ -38,11 +35,30 @@ function draw() {
     const canvas = document.getElementById("treemapCanvas");
     
    
-    let valorTotalArray = [500,300,200,100];
-    let valorTotal = 1100;
+    let valorTotalArray = 
+    [
+      {name: "Bruxadacruz", class: "Ocultista", nivel: 82},
+      {name: "Bruxostoza", class: "Necromancer", nivel: 63},
+      {name: "Comedoradeelemento", class: "Elementalista", nivel: 44},
+      {name: "Magadearcozuado", class: "Elementalista", nivel: 76},
+      {name: "Magnova", class: "Necromancer", nivel: 69},
+      {name: "Maico_arqueira", class: "Deadeye", nivel: 70},
+      {name: "Maico_Contagiante", class: "Ocultista", nivel: 61},
+
+      
+    
+    ];
+
+
+
+    const valorTotal = valorTotalArray.reduce((soma, item) => soma + item.nivel,0);
     let areaTotal = totalH * totalV;
 
+    console.log(valorTotal);
 
+    
+
+   
     // Area total e 64000
     let x = 0;
     let h = 800
@@ -54,13 +70,20 @@ function draw() {
     let modulo = 0;
     let lastX = 0;
 
-    for (var i = 0; i < 4; i++) {
+    //for (var i = 0; i < valorTotalArray.length; i++) {
 
+    valorTotalArray.sort(function(a,b) {
+      return a.nivel > b.nivel ? -1 : a.nivel < b.nivel ? 1 : 0;
+  });
+
+    valorTotalArray.forEach(personagem);
+
+    function personagem(item, index){
       let area2 =0;
-      
+      h = 800;
 
-
-      console.log(x,y,h,w, 'sequencia antes dos ifs = ' + i);
+      console.log(item,index);
+   
 
 
       if (y == 800) {
@@ -71,20 +94,19 @@ function draw() {
         x = lastX;
        }
 
-      w = (  totalV * (((valorTotalArray[i] * 100)/valorTotal)/100));
+      w = (  totalV * (((item.nivel * 100)/valorTotal)/100));
 
-      console.log('validacao i >0 ' + (w));
+      console.log('/////////////////////////////');
+      console.log( 'lastY = ' + lastY);
+      console.log('y = ' + y);
+      console.log('lastX = ' + lastX);
+      console.log('x = ' + x);
+      console.log('\\\\\\\\\\\\\\\\\\\\\\\\\\\\');
 
       area = w * h;
       resto = totalV - (w + y);
 
-      console.log('x = ' + (x));
-      console.log('h = ' + (h));
-      console.log('w = ' + (w));
-      console.log('y = ' + (y));
-      console.log('w + y = ' + (w + y));
-      console.log('tptaçV = ' + (totalV));
-      console.log('resto = ' + (resto));
+    
 
      if ((modulo % 2) !== 0) {
 
@@ -94,7 +116,7 @@ function draw() {
       h = area/w; 
       area2 = w * h;
      
-      
+      console.log('area2 = ' + (area2));
 
      }else{
       
@@ -106,25 +128,34 @@ function draw() {
 
       
      }
-
+     console.log('x = ' + (x));
+     console.log('h = ' + (h));
+     console.log('w = ' + (w));
+     console.log('y = ' + (y));
+     console.log('w + y = ' + (w + y));
+     console.log('x + h = ' + (x + h));
+     console.log('tptaçV = ' + (totalV));
+     console.log('resto = ' + (resto));
+     console.log('area = ' + (area));
+     console.log('valor total = ' + (valorTotal));
      
 
     
 
       ctx2.fillStyle =
         "rgb(" +
-        Math.floor(155 -  (i * 25)) +
+        Math.floor(255 -  (index * 25)) +
         "," +
-        Math.floor(255 - (i * 50)) +
+        Math.floor(255 - (index * 45)) +
         "," +
-        Math.floor(255 -  (i * 65)) +
+        Math.floor(255 -  (index * 65)) +
         ")"
         ;  
       ctx2.fillRect(x, y, h, w);
 
-      ctx2.fillStyle = 'purple';
+      ctx2.fillStyle = 'black';
       ctx2.font = 'bold 25px Arial';
-      ctx2.fillText(Math.floor((valorTotalArray[i] * 100)/valorTotal)+'%',(x + 30), (y + 30)) ;
+      ctx2.fillText(Math.floor((((item.nivel * 100)/valorTotal)/100) * 100)+'%  ' + item.name,(x + 30), (y + 30)) ;
      
 
 
@@ -142,10 +173,17 @@ function draw() {
       lastY = y;
       y = y + w;
       lastX = x;
-      x = h;
+      x = x + h;
       
       modulo++
-      console.log(x,y,h,w, 'sequencia = ' + i);
+
+      console.log('***************************');
+      console.log( 'lastY = ' + lastY);
+      console.log('y = ' + y);
+      console.log('lastX = ' + lastX);
+      console.log('x = ' + x);
+      console.log('***************************');
+      
     }
 
 }

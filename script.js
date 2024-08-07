@@ -91,10 +91,7 @@ function draw() {
       
       w =  w + resto;
       console.log('validacao i >0 ' + (w));
-      if(i = 3){
-        h =800;
-      }else{h = area/w;}
-       
+      h = area/w; 
       area2 = w * h;
      
       

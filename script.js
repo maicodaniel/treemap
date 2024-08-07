@@ -48,16 +48,72 @@ function draw() {
     let y = 0;
     let w = 0;
     let area =0;
+    let resto = 0;
+    let lastY = 0;
+    let modulo = 0;
+    let lastX = 0;
 
-    for (var i = 0; i < valorTotalArray.length; i++) {
+    for (var i = 0; i < 4; i++) {
 
-      y = y + w;
+      let area2 =0;
+      
+
+
+      console.log(x,y,h,w, 'sequencia antes dos ifs = ' + i);
+
+
+      if (y == 800) {
+        y = lastY;
+      }
+
+      if (x == 800) {
+        x = lastX;
+       }
+
       w = (  totalV * (((valorTotalArray[i] * 100)/valorTotal)/100));
 
+      console.log('validacao i >0 ' + (w));
 
-      console.log(  totalV * (((valorTotalArray[i] * 100)/valorTotal)/100));
+      area = w * h;
+      resto = totalV - (w + y);
+
+      console.log('validacao i >0 ' + (x + h), h, area);
+
+     if ((modulo % 2) !== 0) {
+
+      if ((y + w) > 800) {
+
+        console.log(x,y,h,w, 'validacao i >0 else = ' + (area), area2);
+      }else if((y + w) == 800){
 
 
+        console.log(x,y,h,w, 'validacao i >0 else if = ' + (area), area2);
+      }
+      w =  w + resto;
+      h = area/w; 
+      area2 = w * h;
+     
+      if ((y + w) > 800) {
+
+        console.log(x,y,h,w, 'validacao i >0 else = ' + (area), area2);
+      }else if((y + w) == 800){
+
+      }
+
+     }else{
+      
+      h = totalH;
+      area = h * w;
+      resto = h - x;
+      h = resto;
+      w = area/h;
+
+      
+     }
+
+     
+
+     console.log(x,y,h,w, 'sequencia = ' + i);
 
       ctx2.fillStyle =
         "rgb(" +
@@ -74,17 +130,26 @@ function draw() {
       ctx2.font = 'bold 25px Arial';
       ctx2.fillText(Math.floor((valorTotalArray[i] * 100)/valorTotal)+'%',(x + 30), (y + 30)) ;
      
+
+
       if ((x + h) > totalH) {
+
+        console.log('validacao (x + h) > totalH');
           x = 0;
       }
 
       if ((y + w) > totalV) {
+        console.log('validacao (y + w) > totalV');
         y = 0;
       }
 
-
-
+      lastY = y;
+      y = y + w;
+      lastX = x;
+      x = h;
+      
+      modulo++
+      console.log(area, area2, resto)
     }
 
-   
 }

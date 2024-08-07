@@ -78,21 +78,26 @@ function draw() {
       area = w * h;
       resto = totalV - (w + y);
 
-      console.log('validacao i >0 ' +( y + w), h, area);
+      console.log('x = ' + (x));
+      console.log('h = ' + (h));
+      console.log('w = ' + (w));
+      console.log('y = ' + (y));
+      console.log('w + y = ' + (w + y));
+      console.log('tptaçV = ' + (totalV));
+      console.log('resto = ' + (resto));
 
-     if ((modulo % 2) !== 0 && ((y + w) < 800)) {
+     if ((modulo % 2) !== 0) {
 
       
       w =  w + resto;
-      h = area/w; 
+      console.log('validacao i >0 ' + (w));
+      if(i = 3){
+        h =800;
+      }else{h = area/w;}
+       
       area2 = w * h;
      
-      if ((y + w) > 800) {
-
-        
-      }else if((y + w) == 800){
-
-      }
+      
 
      }else{
       
@@ -107,7 +112,7 @@ function draw() {
 
      
 
-     console.log(x,y,h,w, 'sequencia = ' + i);
+    
 
       ctx2.fillStyle =
         "rgb(" +
@@ -143,7 +148,7 @@ function draw() {
       x = h;
       
       modulo++
-      console.log(area, area2, resto)
+      console.log(x,y,h,w, 'sequencia = ' + i);
     }
 
 }

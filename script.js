@@ -6,35 +6,11 @@
 
 function draw() {
 
-  /*  var ctx = document.getElementById("tCanvas").getContext("2d");
-    for (var i = 0; i < 32; i++) {
-      for (var j = 0; j < 32; j++) {
-        ctx.fillStyle =
-          "rgb(" +
-          Math.floor(255 - 10 * i) +
-          "," +
-          Math.floor(255 - 10 * j) +
-          ",0)";
-        ctx.fillRect(j * 25, i * 25, 25, 25);
-        
-       
-      }
-    }
-
-
-  */
-
-
     let totalH = 800;
     let totalV = 800;
    
-   
-
     var ctx2 = document.getElementById("tCanvas2").getContext("2d");
 
-    const canvas = document.getElementById("treemapCanvas");
-    
-   
     let valorTotalArray = 
     [
       {name: "Bruxadacruz", class: "Ocultista", nivel: 82},
@@ -49,17 +25,9 @@ function draw() {
     
     ];
 
-
-
     const valorTotal = valorTotalArray.reduce((soma, item) => soma + item.nivel,0);
     let areaTotal = totalH * totalV;
 
-    console.log(valorTotal);
-
-    
-
-   
-    // Area total e 64000
     let x = 0;
     let h = 800
     let y = 0;
@@ -69,9 +37,7 @@ function draw() {
     let lastY = 0;
     let modulo = 0;
     let lastX = 0;
-
-    //for (var i = 0; i < valorTotalArray.length; i++) {
-
+    
     valorTotalArray.sort(function(a,b) {
       return a.nivel > b.nivel ? -1 : a.nivel < b.nivel ? 1 : 0;
   });
@@ -82,66 +48,32 @@ function draw() {
       let area2 =0;
       h = 800;
 
-      console.log(item,index);
-   
-
-
       if (y == 800) {
         y = lastY;
       }
 
       if (x == 800) {
         x = lastX;
-       }
+      }
 
       w = (  totalV * (((item.nivel * 100)/valorTotal)/100));
-
-      console.log('/////////////////////////////');
-      console.log( 'lastY = ' + lastY);
-      console.log('y = ' + y);
-      console.log('lastX = ' + lastX);
-      console.log('x = ' + x);
-      console.log('\\\\\\\\\\\\\\\\\\\\\\\\\\\\');
-
       area = w * h;
       resto = totalV - (w + y);
 
-    
-
      if ((modulo % 2) !== 0) {
-
-      
       w =  w + resto;
       console.log('validacao i >0 ' + (w));
       h = area/w; 
       area2 = w * h;
-     
-      console.log('area2 = ' + (area2));
-
      }else{
-      
       h = totalH;
       area = h * w;
       resto = h - x;
       h = resto;
       w = area/h;
-
-      
      }
-     console.log('x = ' + (x));
-     console.log('h = ' + (h));
-     console.log('w = ' + (w));
-     console.log('y = ' + (y));
-     console.log('w + y = ' + (w + y));
-     console.log('x + h = ' + (x + h));
-     console.log('tptaçV = ' + (totalV));
-     console.log('resto = ' + (resto));
-     console.log('area = ' + (area));
-     console.log('valor total = ' + (valorTotal));
+  
      
-
-    
-
       ctx2.fillStyle =
         "rgb(" +
         Math.floor(255 -  (index * 25)) +
@@ -160,13 +92,10 @@ function draw() {
 
 
       if ((x + h) > totalH) {
-
-        console.log('validacao (x + h) > totalH');
-          x = 0;
+        x = 0;
       }
 
       if ((y + w) > totalV) {
-        console.log('validacao (y + w) > totalV');
         y = 0;
       }
 
@@ -176,14 +105,5 @@ function draw() {
       x = x + h;
       
       modulo++
-
-      console.log('***************************');
-      console.log( 'lastY = ' + lastY);
-      console.log('y = ' + y);
-      console.log('lastX = ' + lastX);
-      console.log('x = ' + x);
-      console.log('***************************');
-      
     }
-
 }
